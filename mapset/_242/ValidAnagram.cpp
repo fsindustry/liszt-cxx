@@ -31,7 +31,7 @@ public:
     }
 };
 
-int main(){
+int main() {
     Solution s;
     std::cout << s.isAnagram("fe", "ja");
 }
