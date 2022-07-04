@@ -20,7 +20,7 @@ public:
         unordered_map<char, string> pMap;
         unordered_map<string, char> sMap;
         for (int i = 0; i < pattern.length(); i++) {
-            if (pMap[pattern[i]] != "") {
+            if (pMap[pattern[i]] == "") {
                 pMap[pattern[i]] = words[i];
             } else {
                 if (pMap[pattern[i]] != words[i]) {
@@ -46,6 +46,7 @@ public:
         for (int r = 0; r < s.length(); r++) {
             if (s[r + 1] == spliter) {
                 words.push_back(s.substr(l, r - l + 1));
+                r++;
                 l = r + 1;
             }
         }
