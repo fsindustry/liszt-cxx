@@ -16,7 +16,7 @@ public:
 
         vector<int> result;
         for (int v: nums2) {
-            if (map1[v] > 0) {
+            if (map1[v]) {
                 result.push_back(v);
                 map1[v]--;
             }
