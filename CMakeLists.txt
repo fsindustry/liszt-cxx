@@ -9,6 +9,6 @@ list(APPEND EXTRA_LIBS ArrayUtils)
 list(APPEND EXTRA_INCLUDES "${PROJECT_SOURCE_DIR}/util")
 
 # test executable binary
-add_executable(hello lut/_205/IsomorphicStrings.cpp lut/_451/SortCharactersByFrequency.cpp lut2_sum/_1/TwoSum.cpp lut2_sum/_15/_3Sum.cpp)
+add_executable(hello array/_3/LongestSubstringWithoutRepeatingCharacters.cpp)
 target_link_libraries(hello PUBLIC ${EXTRA_LIBS})
 target_link_directories(hello PUBLIC ${PROJECT_SOURCE_DIR}/util)
