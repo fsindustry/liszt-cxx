@@ -9,6 +9,6 @@ list(APPEND EXTRA_LIBS ArrayUtils)
 list(APPEND EXTRA_INCLUDES "${PROJECT_SOURCE_DIR}/util")
 
 # test executable binary
-add_executable(hello array/_76/MinimumWindowSubstring.cpp)
+add_executable(hello lut2_sum/_454/_4SumII.cpp)
 target_link_libraries(hello PUBLIC ${EXTRA_LIBS})
 target_link_directories(hello PUBLIC ${PROJECT_SOURCE_DIR}/util)
