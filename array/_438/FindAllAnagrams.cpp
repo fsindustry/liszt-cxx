@@ -51,8 +51,7 @@ public:
 void test1() {
     ArrayUtils utils;
     Solution solution;
-    string s = "abcabcbb", p = "";
-    vector<int> nums{2, 3, 1, 2, 4, 3};
+    string s = "abcabcbb", p = "abc";
     vector<int> result = solution.findAnagrams(s, p);
     std::cout << "Output: " << utils.print(result);
 }
