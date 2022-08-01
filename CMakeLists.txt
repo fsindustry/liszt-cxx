@@ -9,6 +9,6 @@ list(APPEND EXTRA_LIBS ArrayUtils)
 list(APPEND EXTRA_INCLUDES "${PROJECT_SOURCE_DIR}/util")
 
 # test executable binary
-add_executable(hello linklist3_double_pointer/_234/PalindromeLinkedList.cpp)
+add_executable(hello stack/_71/SimplifyPath.cpp)
 target_link_libraries(hello PUBLIC ${EXTRA_LIBS})
 target_link_directories(hello PUBLIC ${PROJECT_SOURCE_DIR}/util)
