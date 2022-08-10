@@ -9,6 +9,6 @@ list(APPEND EXTRA_LIBS ArrayUtils)
 list(APPEND EXTRA_INCLUDES "${PROJECT_SOURCE_DIR}/util")
 
 # test executable binary
-add_executable(hello stack/_94/BinaryTreeInorderTraversal.cpp stack/_145/BinaryTreePostorderTraversal.cpp stack/_341/FlattenNestedListIterator.cpp)
+add_executable(hello stack/_94/BinaryTreeInorderTraversal.cpp stack/_145/BinaryTreePostorderTraversal.cpp stack/_341/FlattenNestedListIterator.cpp queue/_102/BinaryTreeLevelOrderTraversal.cpp queue/_107/BinaryTreeLevelOrderTraversalII.cpp queue/_103/BinaryTreeZigzagLevelOrderTraversal.cpp queue/_104/MaximumDepthOfBinaryTree.cpp queue/_111/MinimumDepthOfBinaryTree.cpp queue/_199/BinaryTreeRightSideView.cpp)
 target_link_libraries(hello PUBLIC ${EXTRA_LIBS})
 target_link_directories(hello PUBLIC ${PROJECT_SOURCE_DIR}/util)
