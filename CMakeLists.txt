@@ -9,6 +9,6 @@ list(APPEND EXTRA_LIBS ArrayUtils)
 list(APPEND EXTRA_INCLUDES "${PROJECT_SOURCE_DIR}/util")
 
 # test executable binary
-add_executable(hello priority_queue/_347/TopKFrequentElements.cpp priority_queue/_23/MergeKSortedLists.cpp)
+add_executable(hello binarytree/_222/CountCompleteTreeNodes.cpp binarytree/_110/BalancedBinaryTree.cpp)
 target_link_libraries(hello PUBLIC ${EXTRA_LIBS})
 target_link_directories(hello PUBLIC ${PROJECT_SOURCE_DIR}/util)
