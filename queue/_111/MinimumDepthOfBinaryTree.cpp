@@ -21,7 +21,7 @@ struct TreeNode {
 
 class Solution {
 public:
-    int minDepth(TreeNode* root) {
+    int minDepth(TreeNode *root) {
         if (!root) {
             return 0;
         }
@@ -40,7 +40,7 @@ public:
                 TreeNode *head = queue.front();
                 queue.pop();
 
-                if(!head->left && !head->right){
+                if (!head->left && !head->right) {
                     return depth;
                 }
 
@@ -57,5 +57,28 @@ public:
         }
 
         return depth;
+    }
+};
+
+class Solution1 {
+public:
+    int minDepth(TreeNode *root) {
+        if (!root) {
+            return 0;
+        }
+
+        if (!root->left && !root->right) {
+            return 1;
+        }
+
+        int res = INT32_MAX;
+        if (root->left) {
+            res = min(res, minDepth(root->left) + 1);
+        }
+
+        if (root->right) {
+            res = min(res, minDepth(root->right) + 1);
+        }
+        return res;
     }
 };
