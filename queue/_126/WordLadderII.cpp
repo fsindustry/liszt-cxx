@@ -6,6 +6,7 @@
 #include <unordered_set>
 #include <unordered_map>
 #include <iostream>
+#include <stack>
 
 using namespace std;
 
@@ -39,13 +40,13 @@ private:
              vector<vector<string>> &res) {
 
         if (beginWord == endWord) {
-            path.push_back(endWord);
-            res.push_back(path);
-            path.pop_back();
+            vector<string> tmp = path;
+            tmp.push_back(endWord);
+            res.push_back(tmp);
             return;
         }
 
-        if (depth == 0) {
+        if (depth <= 0) {
             return;
         }
 
