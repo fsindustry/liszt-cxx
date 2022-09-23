@@ -9,6 +9,6 @@ list(APPEND EXTRA_LIBS ArrayUtils)
 list(APPEND EXTRA_INCLUDES "${PROJECT_SOURCE_DIR}/util")
 
 # test executable binary
-add_executable(hello recursion/_93/RestoreIPAddresses.cpp recursion/_131/PalindromePartitioning.cpp)
+add_executable(hello backtracking/_47/PermutationsII.cpp)
 target_link_libraries(hello PUBLIC ${EXTRA_LIBS})
 target_link_directories(hello PUBLIC ${PROJECT_SOURCE_DIR}/util)
