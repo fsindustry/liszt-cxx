@@ -21,7 +21,7 @@ public:
 private:
     vector<vector<int>> res;
 
-    void findCombines(int n, int k, int start, vector<int> path) {
+    void findCombines(int n, int k, int start, vector<int> &path) {
         if (k == path.size()) {
             res.push_back(path);
             return;
@@ -51,7 +51,7 @@ public:
 private:
     vector<vector<int>> res;
 
-    void findCombines(int n, int k, int start, vector<int> path) {
+    void findCombines(int n, int k, int start, vector<int> &path) {
         if (k == path.size()) {
             res.push_back(path);
             return;

@@ -18,7 +18,7 @@ public:
         return res;
     }
 
-    void dfs(string &s, int start, vector<string> path) {
+    void dfs(string &s, int start, vector<string> &path) {
         if (start >= s.length()) {
             res.push_back(path);
             return;
