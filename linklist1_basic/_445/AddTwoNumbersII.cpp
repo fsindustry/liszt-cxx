@@ -82,22 +82,23 @@ public:
 
         auto *dummy = new ListNode(0);
         ListNode *cur = dummy;
-        int sum = 0, carry = 0, val = 0;
+        int val = 0, carry = 0;
         while (l1r || l2r) {
-            if (l1r && l2r) {
-                sum = l1r->val + l2r->val + carry;
+            val = carry;
+            if (l1r) {
+                val += l1r->val;
                 l1r = l1r->next;
-                l2r = l2r->next;
-            } else if (l1r) {
-                sum = l1r->val + carry;
-                l1r = l1r->next;
-            } else if (l2r) {
-                sum = l2r->val + carry;
-                l2r = l2r->next;
             }
 
-            carry = sum / 10;
-            val = sum % 10;
+            if (l2r) {
+                val += l2r->val;
+                l2r = l2r->next;
+            }
+            carry = val / 10;
+            if (carry > 0) {
+                val = val % 10;
+            }
+
             cur->next = new ListNode(val);
             cur = cur->next;
         }
