@@ -7,6 +7,72 @@
 
 using namespace std;
 
+class Solution {
+private:
+    int m, n;
+    int move[4][2]{{0,  -1},
+                   {1,  0},
+                   {0,  1},
+                   {-1, 0}};
+    vector<vector<bool>> visited;
+
+    bool inArea(int x, int y) {
+        return x >= 0 && y >= 0 && x < m && y < n;
+    }
+
+    void dfs(vector<vector<char>> &board, int x, int y) {
+        visited[x][y] = true;
+        for (int i = 0; i < 4; i++) {
+            int newx = x + move[i][0];
+            int newy = y + move[i][1];
+            if (inArea(newx, newy) && board[newx][newy] == 'O' && !visited[newx][newy]) {
+                dfs(board, newx, newy);
+            }
+        }
+    }
+
+public:
+    void solve(vector<vector<char>> &board) {
+        m = board.size();
+        if (m == 0) {
+            return;
+        }
+        n = board[0].size();
+        if (n == 0) {
+            return;
+        }
+
+        visited = vector<vector<bool>>(m, vector<bool>(n, false));
+        for (int y = 0; y < n; y++) {
+            if (board[0][y] == 'O') {
+                dfs(board, 0, y);
+            }
+
+            if (board[m - 1][y] == 'O') {
+                dfs(board, m - 1, y);
+            }
+        }
+
+        for (int x = 0; x < m; x++) {
+            if (board[x][0] == 'O') {
+                dfs(board, x, 0);
+            }
+
+            if (board[x][n - 1] == 'O') {
+                dfs(board, x, n - 1);
+            }
+        }
+
+        for (int x = 0; x < m; x++) {
+            for (int y = 0; y < n; y++) {
+                if (board[x][y] == 'O' && !visited[x][y]) {
+                    board[x][y] = 'X';
+                }
+            }
+        }
+    }
+};
+
 class Solution1 {
 private:
     int m, n;
@@ -71,7 +137,7 @@ public:
     }
 };
 
-class Solution {
+class Solution2 {
 private:
     int m, n;
     int move[4][2]{{-1, 0},
