@@ -44,7 +44,7 @@ public:
 };
 
 // memorized search
-class Solution4 {
+class Solution1 {
 private:
     int m, n;
     vector<vector<int>> cache;
@@ -85,7 +85,7 @@ public:
 };
 
 // recursion: timeout
-class Solution3 {
+class Solution2 {
 private:
     int m, n;
 
@@ -115,82 +115,6 @@ public:
         m = grid.size();
         n = grid[0].size();
         return minSum(grid, m - 1, n - 1);
-    }
-};
-
-// memorized search
-class Solution1 {
-private:
-    int m, n;
-    vector<vector<vector<int>>> cache;
-
-    bool inArea(int x, int y) {
-        return x >= 0 && y >= 0 && x < m && y < n;
-    }
-
-    int minSum(vector<vector<int>> &grid, int idx, int x, int y, int move) {
-        if (idx == m + n - 1) {
-            return grid[m - 1][n - 1];
-        }
-
-        if (cache[x][y][move] == -1) {
-            int right = INT32_MAX, down = INT32_MAX;
-            if (inArea(x + 1, y)) {
-                right = minSum(grid, idx + 1, x + 1, y, 0);
-            }
-
-            if (inArea(x, y + 1)) {
-                down = minSum(grid, idx + 1, x, y + 1, 1);
-            }
-
-            cache[x][y][move] = min(right, down) + grid[x][y];
-        }
-
-        return cache[x][y][move];
-    }
-
-
-public:
-
-    int minPathSum(vector<vector<int>> &grid) {
-        m = grid.size();
-        n = grid[0].size();
-        cache = vector<vector<vector<int>>>(m, vector<vector<int>>(n, vector<int>(2, -1)));
-        return minSum(grid, 1, 0, 0, 0);
-    }
-
-};
-
-// recursion: timeout
-class Solution2 {
-private:
-    int m, n;
-
-    bool inArea(int x, int y) {
-        return x >= 0 && y >= 0 && x < m && y < n;
-    }
-
-    int minSum(vector<vector<int>> &grid, int idx, int x, int y) {
-        if (idx == m + n - 1) {
-            return grid[m - 1][n - 1];
-        }
-
-        int right = INT32_MAX, down = INT32_MAX;
-        if (inArea(x + 1, y)) {
-            right = minSum(grid, idx + 1, x + 1, y);
-        }
-
-        if (inArea(x, y + 1)) {
-            down = minSum(grid, idx + 1, x, y + 1);
-        }
-        return grid[x][y] + min(right, down);
-    }
-
-public:
-    int minPathSum(vector<vector<int>> &grid) {
-        m = grid.size();
-        n = grid[0].size();
-        return minSum(grid, 1, 0, 0);
     }
 };
 
