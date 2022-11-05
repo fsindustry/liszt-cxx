@@ -16,16 +16,9 @@ private:
         }
 
         cache[end] = nums[end];
-        for (int i = end; i >= start; i--) {
-            int res = 0;
-            for (int j = i; j <= end; j++) {
-                if (j + 2 <= end) {
-                    res = max(res, nums[j] + cache[j + 2]);
-                } else {
-                    res = max(res, nums[j]);
-                }
-            }
-            cache[i] = res;
+        cache[end - 1] = max(nums[end], nums[end - 1]);
+        for (int i = end - 2; i >= start; i--) {
+            cache[i] = max(cache[i + 1], nums[i] + cache[i + 2]);;
         }
 
         return cache[start];
@@ -40,6 +33,10 @@ public:
 
         if (n == 1) {
             return nums[0];
+        }
+
+        if (n == 2) {
+            return max(nums[0], nums[1]);
         }
 
         // caution：cache values are different for the twice calculations.
@@ -65,11 +62,7 @@ private:
             return cache[start];
         }
 
-        int res = 0;
-        for (int i = start; i <= end; i++) {
-            res = max(res, nums[i] + maxSum(nums, i + 2, end));
-        }
-        return cache[start] = res;
+        return cache[start] = max(maxSum(nums, start + 1, end), nums[start] + maxSum(nums, start + 2, end));
     }
 
 public:
@@ -80,6 +73,10 @@ public:
         }
         if (n == 1) {
             return nums[0];
+        }
+
+        if (n == 2) {
+            return max(nums[0], nums[1]);
         }
 
         // caution：cache values are different for the twice calculations.

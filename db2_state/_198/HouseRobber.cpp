@@ -16,14 +16,17 @@ public:
             return 0;
         }
         cache = vector<int>(nums.size(), -1);
-        cache[0] = nums[0];
 
         for (int start = 0; start < nums.size(); start++) {
-            int res = 0;
-            for (int i = start; i >= 0; i--) {
-                res = max(res, nums[i] + (i - 2 >= 0 ? cache[i - 2] : 0));
+            if (start == 0) {
+                cache[start] = nums[0];
+                continue;
             }
-            cache[start] = res;
+            if (start == 1) {
+                cache[start] = max(nums[0], nums[1]);
+                continue;
+            }
+            cache[start] = max(nums[start] + cache[start - 2], cache[start - 1]);
         }
 
         return cache[nums.size() - 1];
@@ -43,12 +46,8 @@ private:
         if (cache[start] != -1) {
             return cache[start];
         }
-        int res = 0;
-        for (int i = start; i >= 0; i--) {
-            res = max(res, nums[i] + maxSum(nums, i - 2));
-        }
 
-        return cache[start] = res;
+        return cache[start] = max(nums[start] + maxSum(nums, start - 2), maxSum(nums, start - 1));
     }
 
 public:
@@ -68,18 +67,23 @@ private:
 
 public:
     int rob(vector<int> &nums) {
-        if (nums.empty()) {
+        int n = nums.size();
+        if (n == 0) {
             return 0;
         }
-        cache = vector<int>(nums.size(), -1);
-        cache[nums.size() - 1] = nums[nums.size() - 1];
 
-        for (int start = nums.size() - 1; start >= 0; start--) {
-            int res = 0;
-            for (int i = start; i < nums.size(); i++) {
-                res = max(res, nums[i] + (i + 2 < nums.size() ? cache[i + 2] : 0));
+        cache = vector<int>(n, -1);
+
+        for (int start = n - 1; start >= 0; start--) {
+            if (start == n - 1) {
+                cache[start] = nums[start];
+                continue;
             }
-            cache[start] = res;
+            if (start == n - 2) {
+                cache[start] = max(nums[start], nums[start + 1]);
+                continue;
+            }
+            cache[start] = max(nums[start] + cache[start + 2], cache[start + 1]);
         }
 
         return cache[0];
@@ -99,12 +103,7 @@ private:
         if (cache[start] != -1) {
             return cache[start];
         }
-        int res = 0;
-        for (int i = start; i < nums.size(); i++) {
-            res = max(res, nums[i] + maxSum(nums, i + 2));
-        }
-
-        return cache[start] = res;
+        return cache[start] = max(nums[start] + maxSum(nums, start + 2), maxSum(nums, start + 1));
     }
 
 public:
