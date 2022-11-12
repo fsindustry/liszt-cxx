@@ -6,7 +6,28 @@
 using namespace std;
 
 // dynamic program
+// space cost：O(1)
 class Solution {
+public:
+    int rob(vector<int> &nums) {
+        int n = nums.size();
+        if (!n) {
+            return 0;
+        }
+
+        int cur = 0, n1 = 0, n2 = 0;
+        for (int i = n - 1; i >= 0; i--) {
+            cur = max(n1, nums[i] + n2);
+            n2 = n1;
+            n1 = cur;
+        }
+
+        return cur;
+    }
+};
+
+// dynamic program
+class Solution1 {
 private:
     vector<int> cache;
 

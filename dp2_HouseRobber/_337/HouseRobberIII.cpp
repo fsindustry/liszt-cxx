@@ -19,7 +19,34 @@ struct TreeNode {
 };
 
 // dynamic program
+// space cost: O(n)
 class Solution {
+private:
+    pair<int, int> dfs(TreeNode *node) {
+        if (!node) {
+            return {0, 0};
+        }
+
+        pair<int, int> left = dfs(node->left);
+        pair<int, int> right = dfs(node->right);
+        int rob = node->val + left.first + right.first;
+        int not_rob = max(left.first, left.second) + max(right.first, right.second);
+        return {not_rob, rob};
+    }
+
+public:
+    int rob(TreeNode *root) {
+        if (!root) {
+            return 0;
+        }
+
+        pair<int, int> res = dfs(root);
+        return max(res.first, res.second);
+    }
+};
+
+// dynamic program
+class Solution1 {
 private:
     unordered_map<TreeNode *, int> f, g;
 
