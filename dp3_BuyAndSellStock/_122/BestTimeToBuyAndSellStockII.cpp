@@ -1,5 +1,5 @@
 //
-// Created by fsindustry on 2022/11/7.
+// Created by fsindustry on 2022/11/15.
 //
 #include <vector>
 
@@ -17,7 +17,7 @@ public:
         int i0 = 0, i1 = -prices[0];
         for (int i = 1; i < n; i++) {
             i0 = max(i0, i1 + prices[i]);
-            i1 = max(i1, -prices[i]);
+            i1 = max(i1, i0 - prices[i]);
         }
         return i0;
     }
@@ -36,7 +36,7 @@ public:
         cache[0][1] = -prices[0];
         for (int i = 1; i < n; i++) {
             cache[i][0] = max(cache[i - 1][0], cache[i - 1][1] + prices[i]);
-            cache[i][1] = max(cache[i - 1][1], -prices[i]);
+            cache[i][1] = max(cache[i - 1][1], cache[i - 1][0] - prices[i]);
         }
         return cache[n - 1][0];
     }
