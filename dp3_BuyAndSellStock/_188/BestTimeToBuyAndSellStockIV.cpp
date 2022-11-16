@@ -7,7 +7,57 @@
 
 using namespace std;
 
+// 优化：根据 k的取值范围决定策略
 class Solution {
+private:
+    static int maxProfitUnlimitK(int n, vector<int> &prices) {
+        int i0 = 0, i1 = -prices[0];
+        for (int i = 0; i < n; i++) {
+            i0 = max(i0, i1 + prices[i]);
+            i1 = max(i1, i0 - prices[i]);
+        }
+        return i0;
+    }
+
+    static int maxProfitUnlimitK(int n, int K, vector<int> &prices) {
+        int cache[n][K + 1][2];
+        for (int i = 0; i < n; i++) {
+            cache[i][0][0] = 0;
+            cache[i][0][1] = -prices[0];
+        }
+
+        for (int k = 0; k <= K; k++) {
+            cache[0][k][0] = 0;
+            cache[0][k][1] = -prices[0];
+        }
+
+        for (int i = 1; i < n; i++) {
+            for (int k = 1; k <= K; k++) {
+                cache[i][k][0] = max(cache[i - 1][k][0], cache[i - 1][k][1] + prices[i]);
+                cache[i][k][1] = max(cache[i - 1][k][1], cache[i - 1][k - 1][0] - prices[i]);
+            }
+        }
+
+        return cache[n - 1][K][0];
+    }
+
+public:
+    int maxProfit(int K, vector<int> &prices) {
+
+        int n = prices.size();
+        if (!n) {
+            return 0;
+        }
+
+        if (K > n / 2) {
+            return maxProfitUnlimitK(n, prices);
+        } else {
+            return maxProfitUnlimitK(n, K, prices);
+        }
+    }
+};
+
+class Solution1 {
 public:
     int maxProfit(int K, vector<int> &prices) {
 
