@@ -4,7 +4,7 @@
 #include <vector>
 #include <string>
 #include <iostream>
-#include "../../util/ArrayUtils.h"
+#include "../../../util/ArrayUtils.h"
 
 using namespace std;
 
