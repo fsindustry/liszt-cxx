@@ -9,6 +9,6 @@ list(APPEND EXTRA_LIBS ArrayUtils)
 list(APPEND EXTRA_INCLUDES "${PROJECT_SOURCE_DIR}/util")
 
 # test executable binary
-add_executable(hello algr/dp4_knapsack/_322/CoinChange.cpp)
+add_executable(hello algr/dp4_knapsack/_474/OnesAndZeroes.cpp)
 target_link_libraries(hello PUBLIC ${EXTRA_LIBS})
 target_link_directories(hello PUBLIC ${PROJECT_SOURCE_DIR}/util)
